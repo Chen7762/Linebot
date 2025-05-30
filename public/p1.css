@@ -1,0 +1,26 @@
+* {
+    text-align: center
+}
+
+div {
+
+    border: 3px solid black;
+    padding: 20px 30px;
+    width: 400px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+h3 {
+    background-color: rgb(160, 216, 234);
+    padding: 10px 30px;
+    border-radius: 300px;
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+a{
+    color:black
+}

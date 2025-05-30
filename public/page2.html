@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詐騙經歷留言區</title>
+    <style>
+        @import url(p2.css);
+    </style>
+</head>
+
+<body>
+    <br>
+    <div>
+        <a href="index.html" class="back-btn">←返回</a>
+    </div>
+        <h1>新增詐騙經歷</h1>
+    <form id="postForm" action="/add-post" method="POST">
+        <label for="category">選擇詐騙類別：</label>
+        <select id="category" name="category" required>
+            <option value="">請選擇</option>
+            <option value="phone">1. 電話/簡訊詐騙</option>
+            <option value="atm">2. 提款機詐騙</option>
+            <option value="shopping">3. 網購詐騙</option>
+            <option value="insurance">4. 保險詐騙</option>
+            <option value="credit">5. 信用卡詐騙</option>
+            <option value="investment">6. 投資詐騙</option>
+            <option value="other">7. 其他</option>
+        </select>
+
+        <br><br><br>
+
+        <label for="username">你的暱稱(非必填)：</label>
+        <input type="text" id="username" name="username" value="使用者" onclick="this.select()" required>
+
+        <br><br><br>
+
+        <label for="content">詐騙經歷：</label><br>
+        <textarea id="content" name="content" rows="6" cols="50" required></textarea>
+
+        <br><br>
+
+        <button type="submit">送出</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('postForm');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // 阻止預設表單送出（不跳頁）
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch('/add-post', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('送出失敗');
+                return res.text();
+            })
+            .then(msg => {
+                alert('留言成功！');
+                window.location.href = 'index.html'; // 回首頁
+            })
+            .catch(err => {
+                alert('留言失敗，請再試一次');
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+
+</html>

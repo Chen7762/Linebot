@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電話/簡訊詐騙</title>
+    <style>
+        @import url(p3.css);
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-btn">←返回</a>
+    <h1 style="text-align: center;">電話/簡訊詐騙</h1>
+    <div id="posts"></div>
+
+    <script>
+        const category = 'phone'; // 依照頁面決定類別
+
+        fetch(`/posts/${category}`)
+            .then(res => res.json())
+            .then(posts => {
+                const container = document.getElementById('posts');
+                container.innerHTML = '';
+                posts.forEach(post => {
+                    const div = document.createElement('div');
+                    div.className = 'post'
+                    const date = new Date(post.created_at);
+                    const dateStr = `${date.getFullYear()}-${(date.getMonth() + 1)
+                        .toString()
+                        .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                    const timeStr = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+                    div.innerHTML = `<p><strong>${post.username}</strong>（${dateStr} ${timeStr}）</p><p>${post.content}</p>`;
+                    container.appendChild(div);
+                });
+            });
+    </script>
+</body>
+
+</html>

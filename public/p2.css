@@ -1,0 +1,47 @@
+* {
+    text-align: center;
+}
+
+div{
+    text-align: left;
+}
+a {
+    background-color: darkgray;
+    padding: 10px 10px;
+    border-radius: 100px;
+    width: 50px;
+    color: white;
+}
+
+form {
+    border: 2px solid black;
+    padding: 20px 30px;
+    width: 500px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+select {
+    font-size: 15px;
+    width: 180px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+input {
+    font-size: 15px;
+    width: 180px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+label {
+    font-size: 18px;
+}
+
+textarea {
+    height: 300px;
+    text-align: left;
+    font-size: 15px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>電話／簡訊詐騙留言</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .post {
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 15px auto;
+      width: 80%;
+      max-width: 500px;
+      text-align: left;
+      background-color: #f0f8ff;
+    }
+    .back-btn {
+      background-color: darkgray;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 100px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <a href="page1.html" class="back-btn">← 返回首頁</a>
+  <h2>電話／簡訊詐騙的留言</h2>
+  <div id="postContainer"></div>
+
+  <script>
+    const posts = JSON.parse(localStorage.getItem("phone")) || [];
+
+    const container = document.getElementById("postContainer");
+
+    if (posts.length === 0) {
+      container.innerHTML = "<p>目前還沒有留言喔！</p>";
+    } else {
+      posts.forEach(post => {
+        const div = document.createElement("div");
+        div.className = "post";
+        div.innerHTML = `
+          <strong>暱稱：</strong>${post.username}<br>
+          <strong>時間：</strong>${post.time}<br><br>
+          <strong>內容：</strong><br>${post.content}
+        `;
+        container.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
